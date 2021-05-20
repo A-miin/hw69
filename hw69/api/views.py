@@ -13,19 +13,6 @@ def get_token_view(request, *args, **kwargs):
     return HttpResponseNotAllowed('Only GET request are allowed')
 
 
-def json_echo_view(request, *args, **kwargs):
-    answer = {
-        'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        'method': request.method,
-    }
-    if request.body:
-        answer['content'] = json.loads(request.body)
-    answer_as_json = json.dumps(answer)
-    response = HttpResponse(answer_as_json)
-    response['Content-Type'] = 'application/json'
-    return response
-
-
 def add(request, *args, **kwargs):
     answer = {}
     response = {}
